@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<title>TOPIK Practice</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+
+body {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    margin: 0;
+    min-height: 100vh;
+
+    background-image:
+        linear-gradient(
+            rgba(255, 255, 255, 0.65),
+            rgba(255, 255, 255, 0.65)
+        ),
+        url("/static/images/Background.png");
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* ===== HOME ===== */
+
+.menu, .posMenu {
+    margin-top: 70px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+    flex-wrap: wrap;
+}
+
+.title {
+    font-family: 'Fredoka', sans-serif;
+
+    font-size: 72px;
+
+    background: linear-gradient(
+        90deg,
+        #2563EB,
+        #9333EA,
+        #DC2626
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    margin-bottom: 20px;
+    margin-top: -10px;
+    width: 100%;
+}
+
+.category, .posBtn {
+    width: 220px;
+    padding: 18px 20px;
+
+    border-radius: 22px;
+
+    color: white;
+
+    font-size: 18px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif !important;
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+
+    box-shadow:
+        0 10px 15px rgba(0,0,0,0.2),
+        0 4px 6px rgba(0,0,0,0.15);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    letter-spacing: 0.5px;
+}
+
+.category:hover, .posBtn:hover {
+    transform: translateY(-8px) scale(1.06);
+
+    box-shadow:
+        0 18px 30px rgba(0,0,0,0.35),
+        0 8px 10px rgba(0,0,0,0.2);
+}
+
+.topik1 { background: #2563EB; }
+.topik2 { background: #DC2626; }
+
+.posBtn { background: #111827; }
+
+/* ===== HOME BUTTON ===== */
+
+.topBar {
+    position: absolute;
+
+    top: 20px;
+    left: 20px;
+
+    background: #9333EA;
+    color: white;
+
+    border: none;
+
+    border-radius: 999px;
+
+    padding: 12px 22px;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow: 0 8px 20px rgba(0,0,0,.15);
+
+    transition: .25s;
+}
+
+.topBar:hover {
+    transform: translateY(-2px);
+}
+
+/* ===== STUDY ===== */
+
+#studyScreen {
+    display: none;
+    margin-top: 80px;
+}
+
+/* ===== CARD ===== */
+
+.card-container {
+    width: 380px;
+    height: 250px;
+
+    margin: auto;
+
+    perspective: 1200px;
+}
+
+.card {
+    width: 100%;
+    height: 100%;
+
+    position: relative;
+
+    transform-style: preserve-3d;
+
+    transition: transform .7s;
+
+    cursor: pointer;
+}
+
+.card.flipped {
+    transform: rotateY(180deg);
+}
+
+.card-face {
+
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    backface-visibility: hidden;
+
+    border-radius: 24px;
+
+    font-size: 36px;
+    font-weight: bold;
+
+    padding: 20px;
+
+    box-sizing: border-box;
+
+    box-shadow:
+        0 20px 40px rgba(0,0,0,.15);
+
+    backdrop-filter: blur(8px);
+}
+
+.front {
+    background: rgba(255,255,255,.96);
+    color: #111827;
+}
+
+.back {
+    background: #1F2937;
+    color: white;
+
+    transform: rotateY(180deg);
+}
+
+/* ===== BUTTONS ===== */
+
+.buttons {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.Btn {
+
+    background: #111827;
+    color: white;
+
+    border: none;
+
+    border-radius: 999px;
+
+    padding: 12px 28px;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: .25s;
+}
+
+.Btn:hover {
+    transform: translateY(-2px);
+}
+
+.signature {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    font-size: 18px;
+    color: rgba(0, 0, 0, 0.5);
+
+    font-family: 'Poppins', sans-serif;
+
+    user-select: none;
+    pointer-events: none;
+}
+
+
+</style>
+</head>
+
+<footer class="signature">
+    Made with ❤️ by @Tahellll
+</footer>
+
+<body>
+
+<button class="topBar" onclick="goHome()">
+🏠 Home
+</button>
+
+<!-- ========================= -->
+<!-- מסך 1 — בחירת TOPIK -->
+<!-- ========================= -->
+
+<div id="menu" class="menu">
+
+    <h1 class="title">
+        TOPIK Practice
+    </h1>
+
+    <div class="category topik1" onclick="chooseTopik('topik1')">
+        📘 TOPIK 1
+    </div>
+
+    <div class="category topik2" onclick="chooseTopik('topik2')">
+        📕 TOPIK 2
+    </div>
+
+</div>
+
+<!-- מסך 2 — בחירת סוג דקדוק -->
+
+<div id="posMenu" class="posMenu" style="display:none;">
+
+    <h1 class="title">Choose Category</h1>
+
+    <div class="posBtn" onclick="startStudy('Noun')">NOUN</div>
+    <div class="posBtn" onclick="startStudy('Verb')">VERB</div>
+
+</div>
+
+<!-- מסך 3 — כרטיסיות -->
+
+<div id="studyScreen">
+
+    <div class="card-container">
+
+        <div class="card" id="card" onclick="flipCard()">
+
+            <div class="card-face front" id="front"></div>
+
+            <div class="card-face back" id="back"></div>
+
+        </div>
+
+    </div>
+
+    <div class="buttons">
+        <button class="Btn" onclick="prevCard()">← Back</button>
+        <button class="Btn" onclick="Card()">Next →</button>
+    </div>
+
+</div>
+
+<script>
+
+
+let topik1 = {{ topik1 | tojson }};
+let topik2 = {{ topik2 | tojson }};
+
+let selectedTopik = [];
+let filtered = [];
+let index = 0;
+let history = [];
+
+
+function chooseTopik(level) {
+
+    selectedTopik = (level === "topik1") ? topik1 : topik2;
+
+    document.getElementById("menu").style.display = "none";
+    document.getElementById("posMenu").style.display = "flex";
+}
+
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+function startStudy(type) {
+
+    filtered = selectedTopik.filter(w => w.Part_Of_Speech === type);
+
+    filtered = shuffle(filtered);   // 👈 זה מה שחסר לך
+
+    index = 0;
+    history = [];
+
+    document.getElementById("posMenu").style.display = "none";
+    document.getElementById("studyScreen").style.display = "block";
+
+    showCard();
+}
+
+/* SHOW */
+
+function showCard() {
+
+    document
+        .getElementById("card")
+        .classList
+        .remove("flipped");
+
+    document
+        .getElementById("front")
+        .innerText =
+        filtered[index].Korean;
+
+    document
+        .getElementById("back")
+        .innerText =
+        filtered[index].English;
+}
+
+/* FLIP */
+
+function flipCard() {
+
+    document
+        .getElementById("card")
+        .classList
+        .toggle("flipped");
+}
+
+/* NEXT */
+
+function Card() {
+
+    // שומר את הכרטיס הנוכחי להיסטוריה (Back)
+    history.push(index);
+
+    // מעבר לכרטיס הבא
+    index++;
+
+    // אם הגענו לסוף → ערבוב מחדש והתחלה
+    if (index >= filtered.length) {
+        filtered = shuffle(filtered); // 🔥 ערבוב מחדש
+        index = 0;
+        history = []; // מתחילים מחדש נקי
+    }
+
+    showCard();
+}
+
+/* PREV */
+
+function prevCard() {
+
+    if (history.length > 0) {
+        index = history.pop();
+    }
+
+    showCard();
+}
+
+/* HOME */
+
+function goHome() {
+    document.getElementById("studyScreen").style.display = "none";
+    document.getElementById("posMenu").style.display = "none";
+    document.getElementById("menu").style.display = "flex";
+}
+
+</script>
+</body>
+</html>
